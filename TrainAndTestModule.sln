@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TrainModule", "TrainModule\TrainModule.vcxproj", "{3DB69C87-D59C-415D-9648-3A84D8D14262}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "justfortest", "justfortest\justfortest.vcxproj", "{D913D006-3D2C-4537-A381-F8DFF02A5710}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DB69C87-D59C-415D-9648-3A84D8D14262}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3DB69C87-D59C-415D-9648-3A84D8D14262}.Debug|Win32.Build.0 = Debug|Win32
+		{3DB69C87-D59C-415D-9648-3A84D8D14262}.Release|Win32.ActiveCfg = Release|Win32
+		{3DB69C87-D59C-415D-9648-3A84D8D14262}.Release|Win32.Build.0 = Release|Win32
+		{D913D006-3D2C-4537-A381-F8DFF02A5710}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D913D006-3D2C-4537-A381-F8DFF02A5710}.Debug|Win32.Build.0 = Debug|Win32
+		{D913D006-3D2C-4537-A381-F8DFF02A5710}.Release|Win32.ActiveCfg = Release|Win32
+		{D913D006-3D2C-4537-A381-F8DFF02A5710}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
