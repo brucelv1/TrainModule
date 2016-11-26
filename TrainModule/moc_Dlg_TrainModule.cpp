@@ -22,7 +22,7 @@ static const uint qt_meta_data_Dlg_TrainModule[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -39,6 +39,8 @@ static const uint qt_meta_data_Dlg_TrainModule[] = {
      168,   16,   16,   16, 0x0a,
      199,   16,   16,   16, 0x0a,
      222,   16,   16,   16, 0x0a,
+     239,   16,   16,   16, 0x0a,
+     264,   16,   16,   16, 0x0a,
 
        0        // eod
 };
@@ -51,6 +53,8 @@ static const char qt_meta_stringdata_Dlg_TrainModule[] = {
     "on_Btn_Start_clicked()\0"
     "on_Btn_Delete_Latest_clicked()\0"
     "on_Btn_Clear_clicked()\0qTimer_timeout()\0"
+    "on_Btn_Armband_clicked()\0"
+    "on_Btn_DataSave_clicked()\0"
 };
 
 void Dlg_TrainModule::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -68,6 +72,8 @@ void Dlg_TrainModule::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 6: _t->on_Btn_Delete_Latest_clicked(); break;
         case 7: _t->on_Btn_Clear_clicked(); break;
         case 8: _t->qTimer_timeout(); break;
+        case 9: _t->on_Btn_Armband_clicked(); break;
+        case 10: _t->on_Btn_DataSave_clicked(); break;
         default: ;
         }
     }
@@ -108,9 +114,9 @@ int Dlg_TrainModule::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 11;
     }
     return _id;
 }

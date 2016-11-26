@@ -24,12 +24,18 @@
     <ClCompile Include="SerialPort.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="HelperArmBand.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GUI\ui_TrainModule.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="SerialPort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HelperArmBand.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

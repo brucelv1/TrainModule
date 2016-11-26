@@ -14,6 +14,7 @@
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QCheckBox>
+#include <QtGui/QComboBox>
 #include <QtGui/QDialog>
 #include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
@@ -52,7 +53,7 @@ public:
     QLabel *label_4;
     QGroupBox *groupBox_2;
     QPushButton *Btn_Add_Wrist;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QGridLayout *gridLayout;
     QRadioButton *rBtn_Shangqie;
     QRadioButton *rBtn_Neifan;
@@ -62,7 +63,7 @@ public:
     QRadioButton *rBtn_Waixuan;
     QGroupBox *groupBox_3;
     QPushButton *Btn_Add_Elbow;
-    QWidget *widget1;
+    QWidget *layoutWidget2;
     QGridLayout *gridLayout_2;
     QRadioButton *rBtn_Shenzhou;
     QRadioButton *rBtn_Quzhou;
@@ -72,23 +73,32 @@ public:
     QPushButton *Btn_Import;
     QProgressBar *progressBar;
     QPushButton *Btn_Start;
-    QWidget *layoutWidget1;
+    QWidget *layoutWidget3;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *Btn_Delete_Latest;
     QPushButton *Btn_Clear;
+    QGroupBox *groupBox_5;
+    QHBoxLayout *horizontalLayout_4;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_5;
+    QComboBox *cbBox_Armband;
+    QPushButton *Btn_Armband;
+    QLabel *label_6;
+    QLineEdit *LE_Armband;
+    QPushButton *Btn_DataSave;
 
     void setupUi(QDialog *TrainModule)
     {
         if (TrainModule->objectName().isEmpty())
             TrainModule->setObjectName(QString::fromUtf8("TrainModule"));
-        TrainModule->resize(550, 500);
+        TrainModule->resize(550, 600);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(100);
         sizePolicy.setVerticalStretch(100);
         sizePolicy.setHeightForWidth(TrainModule->sizePolicy().hasHeightForWidth());
         TrainModule->setSizePolicy(sizePolicy);
         TrainModule->setMinimumSize(QSize(550, 500));
-        TrainModule->setMaximumSize(QSize(550, 500));
+        TrainModule->setMaximumSize(QSize(550, 600));
         layoutWidget = new QWidget(TrainModule);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(20, 10, 511, 41));
@@ -158,38 +168,38 @@ public:
         Btn_Add_Wrist = new QPushButton(groupBox_2);
         Btn_Add_Wrist->setObjectName(QString::fromUtf8("Btn_Add_Wrist"));
         Btn_Add_Wrist->setGeometry(QRect(210, 40, 61, 21));
-        widget = new QWidget(groupBox_2);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(20, 20, 181, 41));
-        gridLayout = new QGridLayout(widget);
+        layoutWidget1 = new QWidget(groupBox_2);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(20, 20, 181, 41));
+        gridLayout = new QGridLayout(layoutWidget1);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        rBtn_Shangqie = new QRadioButton(widget);
+        rBtn_Shangqie = new QRadioButton(layoutWidget1);
         rBtn_Shangqie->setObjectName(QString::fromUtf8("rBtn_Shangqie"));
 
         gridLayout->addWidget(rBtn_Shangqie, 0, 0, 1, 1);
 
-        rBtn_Neifan = new QRadioButton(widget);
+        rBtn_Neifan = new QRadioButton(layoutWidget1);
         rBtn_Neifan->setObjectName(QString::fromUtf8("rBtn_Neifan"));
 
         gridLayout->addWidget(rBtn_Neifan, 0, 1, 1, 1);
 
-        rBtn_Neixuan = new QRadioButton(widget);
+        rBtn_Neixuan = new QRadioButton(layoutWidget1);
         rBtn_Neixuan->setObjectName(QString::fromUtf8("rBtn_Neixuan"));
 
         gridLayout->addWidget(rBtn_Neixuan, 0, 2, 1, 1);
 
-        rBtn_Xiaqie = new QRadioButton(widget);
+        rBtn_Xiaqie = new QRadioButton(layoutWidget1);
         rBtn_Xiaqie->setObjectName(QString::fromUtf8("rBtn_Xiaqie"));
 
         gridLayout->addWidget(rBtn_Xiaqie, 1, 0, 1, 1);
 
-        rBtn_Waifan = new QRadioButton(widget);
+        rBtn_Waifan = new QRadioButton(layoutWidget1);
         rBtn_Waifan->setObjectName(QString::fromUtf8("rBtn_Waifan"));
 
         gridLayout->addWidget(rBtn_Waifan, 1, 1, 1, 1);
 
-        rBtn_Waixuan = new QRadioButton(widget);
+        rBtn_Waixuan = new QRadioButton(layoutWidget1);
         rBtn_Waixuan->setObjectName(QString::fromUtf8("rBtn_Waixuan"));
 
         gridLayout->addWidget(rBtn_Waixuan, 1, 2, 1, 1);
@@ -200,18 +210,18 @@ public:
         Btn_Add_Elbow = new QPushButton(groupBox_3);
         Btn_Add_Elbow->setObjectName(QString::fromUtf8("Btn_Add_Elbow"));
         Btn_Add_Elbow->setGeometry(QRect(210, 20, 61, 21));
-        widget1 = new QWidget(groupBox_3);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(20, 20, 181, 21));
-        gridLayout_2 = new QGridLayout(widget1);
+        layoutWidget2 = new QWidget(groupBox_3);
+        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(20, 20, 181, 21));
+        gridLayout_2 = new QGridLayout(layoutWidget2);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        rBtn_Shenzhou = new QRadioButton(widget1);
+        rBtn_Shenzhou = new QRadioButton(layoutWidget2);
         rBtn_Shenzhou->setObjectName(QString::fromUtf8("rBtn_Shenzhou"));
 
         gridLayout_2->addWidget(rBtn_Shenzhou, 0, 0, 1, 1);
 
-        rBtn_Quzhou = new QRadioButton(widget1);
+        rBtn_Quzhou = new QRadioButton(layoutWidget2);
         rBtn_Quzhou->setObjectName(QString::fromUtf8("rBtn_Quzhou"));
 
         gridLayout_2->addWidget(rBtn_Quzhou, 0, 1, 1, 1);
@@ -230,27 +240,71 @@ public:
         Btn_Import->setGeometry(QRect(160, 20, 111, 31));
         progressBar = new QProgressBar(TrainModule);
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
-        progressBar->setGeometry(QRect(150, 430, 391, 31));
+        progressBar->setGeometry(QRect(140, 510, 391, 31));
         progressBar->setValue(0);
         Btn_Start = new QPushButton(TrainModule);
         Btn_Start->setObjectName(QString::fromUtf8("Btn_Start"));
-        Btn_Start->setGeometry(QRect(30, 430, 81, 31));
-        layoutWidget1 = new QWidget(TrainModule);
-        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(320, 350, 211, 41));
-        horizontalLayout_2 = new QHBoxLayout(layoutWidget1);
+        Btn_Start->setGeometry(QRect(20, 510, 81, 31));
+        layoutWidget3 = new QWidget(TrainModule);
+        layoutWidget3->setObjectName(QString::fromUtf8("layoutWidget3"));
+        layoutWidget3->setGeometry(QRect(320, 350, 211, 41));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget3);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        Btn_Delete_Latest = new QPushButton(layoutWidget1);
+        Btn_Delete_Latest = new QPushButton(layoutWidget3);
         Btn_Delete_Latest->setObjectName(QString::fromUtf8("Btn_Delete_Latest"));
 
         horizontalLayout_2->addWidget(Btn_Delete_Latest);
 
-        Btn_Clear = new QPushButton(layoutWidget1);
+        Btn_Clear = new QPushButton(layoutWidget3);
         Btn_Clear->setObjectName(QString::fromUtf8("Btn_Clear"));
 
         horizontalLayout_2->addWidget(Btn_Clear);
 
+        groupBox_5 = new QGroupBox(TrainModule);
+        groupBox_5->setObjectName(QString::fromUtf8("groupBox_5"));
+        groupBox_5->setGeometry(QRect(20, 410, 511, 81));
+        horizontalLayout_4 = new QHBoxLayout(groupBox_5);
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        label_5 = new QLabel(groupBox_5);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+
+        horizontalLayout_3->addWidget(label_5);
+
+        cbBox_Armband = new QComboBox(groupBox_5);
+        cbBox_Armband->setObjectName(QString::fromUtf8("cbBox_Armband"));
+
+        horizontalLayout_3->addWidget(cbBox_Armband);
+
+        Btn_Armband = new QPushButton(groupBox_5);
+        Btn_Armband->setObjectName(QString::fromUtf8("Btn_Armband"));
+
+        horizontalLayout_3->addWidget(Btn_Armband);
+
+        label_6 = new QLabel(groupBox_5);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+
+        horizontalLayout_3->addWidget(label_6);
+
+        LE_Armband = new QLineEdit(groupBox_5);
+        LE_Armband->setObjectName(QString::fromUtf8("LE_Armband"));
+        LE_Armband->setReadOnly(true);
+
+        horizontalLayout_3->addWidget(LE_Armband);
+
+        horizontalLayout_3->setStretch(0, 1);
+        horizontalLayout_3->setStretch(1, 2);
+        horizontalLayout_3->setStretch(2, 2);
+        horizontalLayout_3->setStretch(3, 1);
+        horizontalLayout_3->setStretch(4, 2);
+
+        horizontalLayout_4->addLayout(horizontalLayout_3);
+
+        Btn_DataSave = new QPushButton(TrainModule);
+        Btn_DataSave->setObjectName(QString::fromUtf8("Btn_DataSave"));
+        Btn_DataSave->setGeometry(QRect(20, 560, 81, 31));
 
         retranslateUi(TrainModule);
 
@@ -290,6 +344,24 @@ public:
         Btn_Start->setText(QApplication::translate("TrainModule", "\345\274\200\345\247\213\350\256\255\347\273\203", 0, QApplication::UnicodeUTF8));
         Btn_Delete_Latest->setText(QApplication::translate("TrainModule", "\345\210\240\351\231\244\346\234\200\346\226\260", 0, QApplication::UnicodeUTF8));
         Btn_Clear->setText(QApplication::translate("TrainModule", "\346\270\205\351\231\244\345\205\250\351\203\250", 0, QApplication::UnicodeUTF8));
+        groupBox_5->setTitle(QApplication::translate("TrainModule", "\350\202\214\347\224\265\350\207\202\345\270\246\350\277\236\346\216\245\350\256\276\347\275\256", 0, QApplication::UnicodeUTF8));
+        label_5->setText(QApplication::translate("TrainModule", "\344\270\262\345\217\243\345\217\267\357\274\232", 0, QApplication::UnicodeUTF8));
+        cbBox_Armband->clear();
+        cbBox_Armband->insertItems(0, QStringList()
+         << QApplication::translate("TrainModule", "COM1", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("TrainModule", "COM2", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("TrainModule", "COM3", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("TrainModule", "COM4", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("TrainModule", "COM5", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("TrainModule", "COM6", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("TrainModule", "COM7", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("TrainModule", "COM8", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("TrainModule", "COM9", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("TrainModule", "COM10", 0, QApplication::UnicodeUTF8)
+        );
+        Btn_Armband->setText(QApplication::translate("TrainModule", "\350\277\236\346\216\245", 0, QApplication::UnicodeUTF8));
+        label_6->setText(QApplication::translate("TrainModule", "\350\277\236\346\216\245\347\212\266\346\200\201\357\274\232", 0, QApplication::UnicodeUTF8));
+        Btn_DataSave->setText(QApplication::translate("TrainModule", "\346\225\260\346\215\256\344\277\235\345\255\230...", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

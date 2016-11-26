@@ -77,11 +77,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HelperArmBand.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="moc_Dlg_TrainModule.cpp" />
     <ClCompile Include="SerialPort.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HelperArmBand.h" />
     <ClInclude Include="SerialPort.h" />
     <CustomBuild Include="Dlg_TrainModule.hpp">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">moc.exe Dlg_TrainModule.hpp -o moc_Dlg_TrainModule.cpp</Command>
