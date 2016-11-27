@@ -115,6 +115,7 @@ public:
 
         spinBox_SampleRate = new QSpinBox(layoutWidget);
         spinBox_SampleRate->setObjectName(QString::fromUtf8("spinBox_SampleRate"));
+        spinBox_SampleRate->setMaximum(1000);
         spinBox_SampleRate->setValue(20);
 
         horizontalLayout->addWidget(spinBox_SampleRate);

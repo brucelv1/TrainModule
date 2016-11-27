@@ -113,6 +113,10 @@ public:
 		// timing
 		duration<double> time_span;
 		steady_clock::time_point t1, t2;
+
+		// 臂带一开始不能正常读数，先等待1000ms
+		boost::this_thread::sleep_for(boost::chrono::milliseconds(1000));
+
 		// counting
 		int progress = 0;
 		int total_num = dtm->_commandVec.size();
@@ -124,6 +128,7 @@ public:
 			int command = (*it)->Command;
 			int smp_period = 1000 / ((*it)->SampleRate);
 			smp_period = smp_period==0 ? 1 : smp_period; // max rate == 1000 Hz
+			int total_sample = (*it)->TotalSample;
 
 			unsigned char byte0 = command % 256;
 			unsigned char byte1 = (command >> 8) % 256;
@@ -137,6 +142,7 @@ public:
 			dtm->_ucpNameSharedMem[1] = byte3; // not used yet
 
 			// wait for duration
+			int sampleIdx = 0;
 			do 
 			{
 				/*if((*it)->Name == "Rest")
@@ -152,9 +158,10 @@ public:
 
 				boost::this_thread::sleep_for(boost::chrono::milliseconds(smp_period));
 
-				t2 = steady_clock::now();
-				time_span = duration_cast<duration<double> > (t2-t1);
-			} while (time_span.count()<dura);
+				//t2 = steady_clock::now();
+				//time_span = duration_cast<duration<double> > (t2-t1);
+				sampleIdx+=1;
+			} while (sampleIdx<total_sample/*time_span.count()<dura*/);
 
 			progress+=1;
 			dtm->processingBarVal = 100*progress/total_num;
