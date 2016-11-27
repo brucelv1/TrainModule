@@ -150,11 +150,8 @@ public:
 					dtm->_armBandData.push_back(dtm->_armBand->GetDataVector());
 				}
 
-<<<<<<< HEAD:Dlg_TrainModule.hpp
-				boost::this_thread::sleep_for(boost::chrono::milliseconds(50));
-=======
 				boost::this_thread::sleep_for(boost::chrono::milliseconds(smp_period));
->>>>>>> master:Dlg_TrainModule.hpp
+
 				t2 = steady_clock::now();
 				time_span = duration_cast<duration<double> > (t2-t1);
 			} while (time_span.count()<dura);
