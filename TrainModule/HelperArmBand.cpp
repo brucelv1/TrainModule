@@ -128,6 +128,7 @@ CClient::CClient(int nChannel/*=8*/, DeviceType dt/*=EMG*/)
 	: DATA_CHANNEL(nChannel)
 	, mDevice(dt)
 	, data_buff(nullptr)
+	, mSerialSuccessful(false)
 {
 	// 数据格式：8通道，前4个是EMG信号，后4个是NIR信号
 	data_buff = new double[DATA_CHANNEL]();
