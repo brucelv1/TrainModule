@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D913D006-3D2C-4537-A381-F8DFF02A5710}</ProjectGuid>
+    <ProjectGuid>{3DB69C87-D59C-415D-9648-3A84D8D14262}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>justfortest</RootNamespace>
+    <RootNamespace>TrainModule</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -39,8 +39,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(BOOST_ROOT);$(IncludePath)</IncludePath>
-    <LibraryPath>$(BOOST_ROOT)/lib32-msvc-10.0;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(QT_INC);$(BOOST_ROOT);$(IncludePath)</IncludePath>
+    <LibraryPath>$(QT_LIB);$(BOOST_ROOT)/lib32-msvc-10.0;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -56,6 +56,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>QtCored4.lib;QtGuid4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -76,7 +77,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HelperArmBand.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="moc_Dlg_TrainModule.cpp" />
+    <ClCompile Include="SerialPort.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HelperArmBand.h" />
+    <ClInclude Include="SerialPort.h" />
+    <CustomBuild Include="Dlg_TrainModule.hpp">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">moc.exe Dlg_TrainModule.hpp -o moc_Dlg_TrainModule.cpp</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">moc.exe Dlg_TrainModule.hpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">moc_Dlg_TrainModule.cpp</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="GUI\ui_TrainModule.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
