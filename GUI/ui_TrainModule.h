@@ -36,6 +36,9 @@ class Ui_TrainModule
 public:
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
+    QLabel *label_7;
+    QSpinBox *spinBox_SampleRate;
+    QLabel *label_8;
     QLabel *label;
     QSpinBox *spinBox_Do_Duration;
     QLabel *label_2;
@@ -105,6 +108,22 @@ public:
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        label_7 = new QLabel(layoutWidget);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+
+        horizontalLayout->addWidget(label_7);
+
+        spinBox_SampleRate = new QSpinBox(layoutWidget);
+        spinBox_SampleRate->setObjectName(QString::fromUtf8("spinBox_SampleRate"));
+        spinBox_SampleRate->setValue(20);
+
+        horizontalLayout->addWidget(spinBox_SampleRate);
+
+        label_8 = new QLabel(layoutWidget);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+
+        horizontalLayout->addWidget(label_8);
+
         label = new QLabel(layoutWidget);
         label->setObjectName(QString::fromUtf8("label"));
 
@@ -314,6 +333,8 @@ public:
     void retranslateUi(QDialog *TrainModule)
     {
         TrainModule->setWindowTitle(QApplication::translate("TrainModule", "TrainModule", 0, QApplication::UnicodeUTF8));
+        label_7->setText(QApplication::translate("TrainModule", "\351\207\207\346\240\267\351\242\221\347\216\207\357\274\232", 0, QApplication::UnicodeUTF8));
+        label_8->setText(QApplication::translate("TrainModule", "Hz", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("TrainModule", "\345\212\250\344\275\234\346\227\266\351\227\264\357\274\232", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("TrainModule", "\347\247\222", 0, QApplication::UnicodeUTF8));
         cbUseRest->setText(QApplication::translate("TrainModule", "\344\275\277\347\224\250\344\274\221\346\201\257\346\200\201\344\275\234\344\270\272\351\227\264\351\232\224\357\274\232", 0, QApplication::UnicodeUTF8));

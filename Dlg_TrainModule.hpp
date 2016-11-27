@@ -35,7 +35,15 @@ private:
 		std::string Name;
 		int         Command;
 		size_t      Duration;
-		_commandInfo() : Name(""), Command(0), Duration(0) {}
+		size_t      SampleRate;
+		size_t      TotalSample;
+		_commandInfo() 
+			: Name("")
+			, Command(0)
+			, Duration(0)
+			, SampleRate(0)
+			, TotalSample(0)
+		{}
 	};
 	
 	std::vector< std::shared_ptr<_commandInfo> > _commandVec;
@@ -114,6 +122,9 @@ public:
 			t1 = steady_clock::now();
 			int dura = (*it)->Duration;
 			int command = (*it)->Command;
+			int smp_period = 1000 / ((*it)->SampleRate);
+			smp_period = smp_period==0 ? 1 : smp_period; // max rate == 1000 Hz
+
 			unsigned char byte0 = command % 256;
 			unsigned char byte1 = (command >> 8) % 256;
 			unsigned char byte2 = 0; // not used yet
@@ -139,7 +150,7 @@ public:
 					dtm->_armBandData.push_back(dtm->_armBand->GetDataVector());
 				}
 
-				boost::this_thread::sleep_for(boost::chrono::milliseconds(50));
+				boost::this_thread::sleep_for(boost::chrono::milliseconds(smp_period));
 				t2 = steady_clock::now();
 				time_span = duration_cast<duration<double> > (t2-t1);
 			} while (time_span.count()<dura);
@@ -155,6 +166,7 @@ private:
 	{
 		_tableModel->setHorizontalHeaderItem(0,new QStandardItem("Name"));
 		_tableModel->setHorizontalHeaderItem(1,new QStandardItem("Duration"));
+		_tableModel->setHorizontalHeaderItem(2,new QStandardItem("Sample Rate"));
 
 		// bind the model with the view
 		Tb_series->setModel(_tableModel);
@@ -176,6 +188,11 @@ private:
 			QString dura = QString(tmp);
 			dura += " seconds";
 			_tableModel->setItem(i,1,new QStandardItem(dura));
+
+			sprintf_s(tmp,"%d",_commandVec[i]->SampleRate);
+			QString spRt = QString(tmp);
+			spRt += " Hz";
+			_tableModel->setItem(i,2,new QStandardItem(spRt));
 		}
 	}
 
@@ -194,6 +211,8 @@ private:
 		action->Name=name;
 		action->Command=command;
 		action->Duration=spinBox_Do_Duration->value();
+		action->SampleRate=spinBox_SampleRate->value();
+		action->TotalSample=action->Duration * action->SampleRate;
 		_commandVec.push_back(action);
 
 		if(cbUseRest->isChecked())
@@ -202,6 +221,8 @@ private:
 			rest->Name="Rest";
 			rest->Command=0;
 			rest->Duration=spinBox_Rest_Duration->value();
+			rest->SampleRate=spinBox_SampleRate->value();
+			rest->TotalSample=rest->Duration * rest->SampleRate;
 			_commandVec.push_back(rest);
 		}
 	}
@@ -327,12 +348,16 @@ public slots:
 				std::string name = _commandVec[i]->Name;
 				int command = _commandVec[i]->Command;
 				size_t dura = _commandVec[i]->Duration;
+				size_t spRt = _commandVec[i]->SampleRate;
+				size_t tSp  = _commandVec[i]->TotalSample;
 
 				ptree _action;
 				_action.put<int>("num", i+1);
 				_action.push_back(std::make_pair("name",name));
 				_action.put<int>("command",command);
 				_action.put<int>("duration",dura);
+				_action.put<int>("sample_rate",spRt);
+				_action.put<int>("total_sample",tSp);
 
 				Actions.push_back(std::make_pair("",_action));
 			}
@@ -386,10 +411,14 @@ public slots:
 				std::string name = it->second.get<std::string>("name");
 				int command = it->second.get<int>("command");
 				size_t dura = it->second.get<size_t>("duration");
+				size_t smRt = it->second.get<size_t>("sample_rate");
+				size_t tSp = it->second.get<size_t>("total_sample");
 				std::shared_ptr<_commandInfo> cinfo(new _commandInfo());
 				cinfo->Name = name;
 				cinfo->Command = command;
 				cinfo->Duration = dura;
+				cinfo->SampleRate = smRt;
+				cinfo->TotalSample = tSp;
 				InfoVec.push_back(cinfo);
 			}
 
