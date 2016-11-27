@@ -25,10 +25,10 @@ private:
 	// use int to store command
 	// 0: rest
 	// 1: thumb, 2: index, 4: middle, 8: ring, 16: little
-	// 32: shangqie, 64: xiaqie
-	// 128: neifan, 256: waifan
-	// 512: neixuan, 1024: waixuan
-	// 2048: shenzhou, 4096: quzhou
+	// 256: shangqie, 512: xiaqie
+	// 1024: neifan, 2048: waifan
+	// 4096: neixuan, 8192: waixuan
+	// 16384: shenzhou, 32768: quzhou
 	class _commandInfo
 	{
 	public:
@@ -238,41 +238,41 @@ public slots:
 	void on_Btn_Add_Wrist_clicked()
 	{
 		// int command
-		// 32: shangqie, 64: xiaqie
-		// 128: neifan, 256: waifan
-		// 512: neixuan, 1024: waixuan
+		// 256: shangqie, 512: xiaqie
+		// 1024: neifan, 2048: waifan
+		// 4096: neixuan, 8192: waixuan
 		std::string name = "";
 		int command = 0;
 
 		if(rBtn_Shangqie->isChecked())
 		{
 			name = "Shang Qie";
-			command = (1<<5);
+			command = (1<<8);
 		}
 		else if (rBtn_Xiaqie->isChecked())
 		{
 			name = "Xia Qie";
-			command = (1<<6);
+			command = (1<<9);
 		}
 		else if (rBtn_Neifan->isChecked())
 		{
 			name = "Nei Fan";
-			command = (1<<7);
+			command = (1<<10);
 		}
 		else if (rBtn_Waifan->isChecked())
 		{
 			name = "Wai Fan";
-			command = (1<<8);
+			command = (1<<11);
 		}
 		else if (rBtn_Neixuan->isChecked())
 		{
 			name = "Nei Xuan";
-			command = (1<<9);
+			command = (1<<12);
 		}
 		else if (rBtn_Waixuan->isChecked())
 		{
 			name = "Wai Xuan";
-			command = (1<<10);
+			command = (1<<13);
 		}
 		else
 			return;
@@ -284,19 +284,19 @@ public slots:
 	void on_Btn_Add_Elbow_clicked()
 	{
 		// int command
-		// 2048: shenzhou, 4096: quzhou
+		// 16384: shenzhou, 32768: quzhou
 		std::string name = "";
 		int command = 0;
 
 		if (rBtn_Shenzhou->isChecked())
 		{
 			name = "Shen Zhou";
-			command = (1<<11);
+			command = (1<<14);
 		}
 		else if (rBtn_Quzhou->isChecked())
 		{
 			name = "Qu Zhou";
-			command = (1<<12);
+			command = (1<<15);
 		}
 		else
 			return;
