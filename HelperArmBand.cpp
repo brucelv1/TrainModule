@@ -6,30 +6,30 @@
 ********************************************/
 static DWORD WINAPI DataThreadEntry(PVOID arg) 
 {
-	//((CClient *)arg)->OpenSerial();
-	//while(((CClient *)arg)->thread_state!=END)
+	//((SJTArmBand *)arg)->OpenSerial();
+	//while(((SJTArmBand *)arg)->thread_state!=END)
 	//{
-	//	if(((CClient *)arg)->mSerialSuccessful)
-	//		((CClient *)arg)->SendData();
+	//	if(((SJTArmBand *)arg)->mSerialSuccessful)
+	//		((SJTArmBand *)arg)->SendData();
 	//	else
-	//		((CClient *)arg)->thread_state=END;
+	//		((SJTArmBand *)arg)->thread_state=END;
 	//}
-	//((CClient *)arg)->CloseSerial();
+	//((SJTArmBand *)arg)->CloseSerial();
 	return 0;
 }
 
 // 默认使用的数据更新线程
 static DWORD WINAPI DataThreadEntry_EMG(PVOID arg) 
 {
-	((CClient *)arg)->OpenSerial();
-	while(((CClient *)arg)->thread_state!=END)
+	((SJTArmBand *)arg)->OpenSerial();
+	while(((SJTArmBand *)arg)->thread_state!=END)
 	{
-		if(((CClient *)arg)->mSerialSuccessful)
-			((CClient *)arg)->SendData_EMG();
+		if(((SJTArmBand *)arg)->mSerialSuccessful)
+			((SJTArmBand *)arg)->SendData_EMG();
 		else
-			((CClient *)arg)->thread_state=END;
+			((SJTArmBand *)arg)->thread_state=END;
 	}
-	((CClient *)arg)->CloseSerial();
+	((SJTArmBand *)arg)->CloseSerial();
 	return 0;
 }
 /*******************************************
@@ -122,13 +122,12 @@ CFilter: END
 
 
 /*******************************************
-CClient: BEGIN
+SJTArmBand: BEGIN
 ********************************************/
-CClient::CClient(int nChannel/*=8*/, DeviceType dt/*=EMG*/)
+SJTArmBand::SJTArmBand(int nChannel/*=8*/, DeviceType dt/*=EMG*/)
 	: DATA_CHANNEL(nChannel)
 	, mDevice(dt)
 	, data_buff(nullptr)
-	, mSerialSuccessful(false)
 {
 	// 数据格式：8通道，前4个是EMG信号，后4个是NIR信号
 	data_buff = new double[DATA_CHANNEL]();
@@ -143,7 +142,7 @@ CClient::CClient(int nChannel/*=8*/, DeviceType dt/*=EMG*/)
 	InitializeCriticalSection(&_mCriticalSection);
 }
 
-CClient::~CClient()
+SJTArmBand::~SJTArmBand()
 {
 	delete [] data_buff;
 	data_buff = nullptr;
@@ -161,8 +160,8 @@ CClient::~CClient()
 	}
 }
 
-//void CClient::OpenSerial(int nCOM/*=5*/, int Baudrate/*=57600*/)
-void CClient::OpenSerial()
+//void SJTArmBand::OpenSerial(int nCOM/*=5*/, int Baudrate/*=57600*/)
+void SJTArmBand::OpenSerial()
 {
 	mSerialSuccessful=true;
 	char	tmpCOM[100];
@@ -238,7 +237,7 @@ void CClient::OpenSerial()
 		mSerialSuccessful=false;
 }
 
-void CClient::CloseSerial()
+void SJTArmBand::CloseSerial()
 {
 	if(mSerialSuccessful)
 	{
@@ -248,7 +247,7 @@ void CClient::CloseSerial()
 	}
 }
 
-bool CClient::Connect(int _nCOM/*=5*/, int _BaudRate/*=57600*/)
+bool SJTArmBand::Connect(int _nCOM/*=5*/, int _BaudRate/*=57600*/)
 {
 	this->nCOM = _nCOM;
 	this->Baudrate = _BaudRate;
@@ -279,11 +278,11 @@ bool CClient::Connect(int _nCOM/*=5*/, int _BaudRate/*=57600*/)
 		return true;
 }
 
-bool CClient::SendData()
+bool SJTArmBand::SendData()
 {
 	DWORD BytesRead;                               // the number of bytes that have been read
 	::ReadFile(hCom,buff,3000,&BytesRead,NULL);    //LB//从文件指针指向的位置开始将数据读出到一个文件中,buff为保存读入数据的缓冲区。3000要读入的字节数。
-	for(int index=0;index<BytesRead;index++)
+	for(DWORD index=0; index<BytesRead; index++)
 	{
 		switch(data_cnt_state)              //LB//数据状态
 		{
@@ -351,11 +350,11 @@ bool CClient::SendData()
 	return false;
 }
 
-bool CClient::SendData_EMG()
+bool SJTArmBand::SendData_EMG()
 {
 	DWORD BytesRead;                               // the number of bytes that have been read
 	::ReadFile(hCom,buff,3000,&BytesRead,NULL);    //LB//从文件指针指向的位置开始将数据读出到一个文件中,buff为保存读入数据的缓冲区。3000要读入的字节数。
-	for(int index=0;index<BytesRead;index++)       
+	for(DWORD index=0; index<BytesRead; index++)       
 	{
 		switch(data_cnt_state)              //LB//数据状态
 		{
@@ -409,11 +408,11 @@ bool CClient::SendData_EMG()
 	return false;
 }
 
-std::vector<double> CClient::GetDataVector()
+std::vector<double> SJTArmBand::GetDataVector()
 {
 	return _mDataReadyToUse;
 }
 
 /*******************************************
-CClient: END
+SJTArmBand: END
 ********************************************/

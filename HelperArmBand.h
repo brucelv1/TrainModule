@@ -2,7 +2,7 @@
 Copyright:
 Author:
 Date:2013-08-17
-Description:定义了CFilter、CClient类，完成从串口读数据、滤波功能
+Description:定义了CFilter、SJTArmBand类，完成从串口读数据、滤波功能
 **************************************************/
 #pragma once
 #include <Windows.h>
@@ -45,10 +45,10 @@ public:
 };
 
 /*******************************************
-类名称：CClient
+类名称：SJTArmBand
 功    能：打开串口，读取串口传输过来的数据、滤波
 ********************************************/
-class  CClient
+class  SJTArmBand
 {
 public:
 	enum DeviceType {EMG_NIR=1,EMG};
@@ -78,8 +78,8 @@ private:
 	int Baudrate;
 
 public:
-	CClient(int nChannel=8, DeviceType dt=EMG);	
-	~CClient();
+	SJTArmBand(int nChannel=8, DeviceType dt=EMG);	
+	~SJTArmBand();
 
 	// 串口操作
 	//void OpenSerial(int nCOM=5, int Baudrate=57600);

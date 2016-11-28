@@ -100,7 +100,7 @@ public:
         sizePolicy.setVerticalStretch(100);
         sizePolicy.setHeightForWidth(TrainModule->sizePolicy().hasHeightForWidth());
         TrainModule->setSizePolicy(sizePolicy);
-        TrainModule->setMinimumSize(QSize(550, 500));
+        TrainModule->setMinimumSize(QSize(550, 600));
         TrainModule->setMaximumSize(QSize(550, 600));
         layoutWidget = new QWidget(TrainModule);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));

@@ -66,7 +66,7 @@ private:
 	int processingBarVal;
 
 	// ArmBand
-	CClient* _armBand;
+	SJTArmBand* _armBand;
 	std::vector<std::vector<double> > _armBandData;
 
 public:
@@ -76,7 +76,7 @@ public:
 		, _mSerialPort(nullptr)
 		, _ucpNameSharedMem(nameSharedMem)
 		, _stLenSharedMem(lenSharedMem)
-		, _armBand(new CClient())
+		, _armBand(new SJTArmBand())
 	{
 		setupUi(this);
 		_initTableView();
