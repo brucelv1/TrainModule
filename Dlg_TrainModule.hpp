@@ -513,7 +513,7 @@ public slots:
 				size_t j;
 				for (j=0; j<_armBandData[i].size()-1; j++)
 				{
-					outfile << _armBandData[i][j] << ",";
+					outfile << _armBandData[i][j] << '\t';
 				}
 				outfile << _armBandData[i][j] << "\n";
 			}
