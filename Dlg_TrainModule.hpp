@@ -508,15 +508,21 @@ public slots:
 		{
 			//fileName是文件名
 			std::ofstream outfile(fileName.toStdString());
-			for (size_t i=0; i<_armBandData.size(); i++)
+			size_t i,j;
+			for (i=0; i<_armBandData.size()-1; i++)
 			{
-				size_t j;
 				for (j=0; j<_armBandData[i].size()-1; j++)
 				{
 					outfile << _armBandData[i][j] << '\t';
 				}
 				outfile << _armBandData[i][j] << "\n";
 			}
+			// last line should not have a linefeed
+			for (j=0; j<_armBandData[i].size()-1; j++)
+			{
+				outfile << _armBandData[i][j] << '\t';
+			}
+			outfile << _armBandData[i][j];
 
 			//存储结束，清空数据，以方便下次采集
 			_armBandData.clear();
