@@ -9,7 +9,7 @@ int main(int argc, char** argv)
 	if (argc<2)
 	{
 		std::cout << "Inadequate Arguments." << std::endl;
-		std::cout << "COM port needs to be given." << std::endl;
+		std::cout << "Name of shared memory needs to be given." << std::endl;
 		return -1;
 	}
 
