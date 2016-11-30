@@ -136,6 +136,9 @@ public:
 			dtm->_ucpNameSharedMem[2] = byte2; // not used yet
 			dtm->_ucpNameSharedMem[1] = byte3; // not used yet
 
+			// main module processing bar
+			dtm->_ucpNameSharedMem[6] = 0;
+
 			// ¶ÁÃë×¼±¸£º3Ãë
 			t1 = steady_clock::now();
 			do {
@@ -176,6 +179,7 @@ public:
 				::Sleep(smp_period);
 
 				sampleIdx+=1;
+				dtm->_ucpNameSharedMem[6] = 100 * sampleIdx / total_sample;
 			} while (sampleIdx<total_sample);
 
 			progress+=1;
