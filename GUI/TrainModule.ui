@@ -54,7 +54,7 @@
        <number>1000</number>
       </property>
       <property name="value">
-       <number>20</number>
+       <number>1000</number>
       </property>
      </widget>
     </item>
@@ -73,7 +73,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QSpinBox" name="spinBox_Do_Duration"/>
+     <widget class="QSpinBox" name="spinBox_Do_Duration">
+      <property name="value">
+       <number>5</number>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_2">
@@ -90,7 +94,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QSpinBox" name="spinBox_Rest_Duration"/>
+     <widget class="QSpinBox" name="spinBox_Rest_Duration">
+      <property name="value">
+       <number>5</number>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_3">

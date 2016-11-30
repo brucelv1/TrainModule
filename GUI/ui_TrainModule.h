@@ -116,7 +116,7 @@ public:
         spinBox_SampleRate = new QSpinBox(layoutWidget);
         spinBox_SampleRate->setObjectName(QString::fromUtf8("spinBox_SampleRate"));
         spinBox_SampleRate->setMaximum(1000);
-        spinBox_SampleRate->setValue(20);
+        spinBox_SampleRate->setValue(1000);
 
         horizontalLayout->addWidget(spinBox_SampleRate);
 
@@ -132,6 +132,7 @@ public:
 
         spinBox_Do_Duration = new QSpinBox(layoutWidget);
         spinBox_Do_Duration->setObjectName(QString::fromUtf8("spinBox_Do_Duration"));
+        spinBox_Do_Duration->setValue(5);
 
         horizontalLayout->addWidget(spinBox_Do_Duration);
 
@@ -147,6 +148,7 @@ public:
 
         spinBox_Rest_Duration = new QSpinBox(layoutWidget);
         spinBox_Rest_Duration->setObjectName(QString::fromUtf8("spinBox_Rest_Duration"));
+        spinBox_Rest_Duration->setValue(5);
 
         horizontalLayout->addWidget(spinBox_Rest_Duration);
 
