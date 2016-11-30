@@ -110,8 +110,9 @@ public:
 	{
 		using namespace boost::chrono;
 
-		// 臂带一开始不能正常读数，先等待2000ms
-		::Sleep(2000);
+		// timing
+		duration<double> time_span;
+		steady_clock::time_point t1, t2;
 
 		// counting
 		int progress = 0;
@@ -134,6 +135,32 @@ public:
 			dtm->_ucpNameSharedMem[3] = byte1;
 			dtm->_ucpNameSharedMem[2] = byte2; // not used yet
 			dtm->_ucpNameSharedMem[1] = byte3; // not used yet
+
+			// 读秒准备：3秒
+			t1 = steady_clock::now();
+			do {
+				::Sleep(250);
+				t2 = steady_clock::now();
+				time_span = duration_cast<duration<double> > (t2-t1);
+
+				if (time_span.count() <= 1) {
+					std::cout << "3 ";
+					//dtm->_ucpNameSharedMem[5] = 3;// set memory to 3
+				}
+				else if (time_span.count() <= 2) {
+					std::cout << "2 ";
+					//dtm->_ucpNameSharedMem[5] = 2;// set memory to 2
+				}
+				else if (time_span.count() <= 3) {
+					std::cout << "1 ";
+					//dtm->_ucpNameSharedMem[5] = 1;// set memory to 1
+				}
+				else {
+					std::cout << "0\n";
+					//dtm->_ucpNameSharedMem[5] = 0;// set memory to 0
+					break;
+				}
+			} while (1);
 
 			// wait for duration
 			int sampleIdx = 0;
