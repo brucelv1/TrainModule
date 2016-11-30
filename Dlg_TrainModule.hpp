@@ -106,16 +106,12 @@ public:
 		_mThread.join();
 	}
 
-	static void ThreadSend(Dlg_TrainModule* dtm)
+	static void ThreadSampling(Dlg_TrainModule* dtm)
 	{
 		using namespace boost::chrono;
 
-		// timing
-		duration<double> time_span;
-		steady_clock::time_point t1, t2;
-
-		// 臂带一开始不能正常读数，先等待1000ms
-		boost::this_thread::sleep_for(boost::chrono::milliseconds(1000));
+		// 臂带一开始不能正常读数，先等待2000ms
+		::Sleep(2000);
 
 		// counting
 		int progress = 0;
@@ -123,10 +119,8 @@ public:
 		std::vector< std::shared_ptr<_commandInfo> >::iterator it;		
 		for (it=dtm->_commandVec.begin(); it!=dtm->_commandVec.end(); it++)
 		{
-			t1 = steady_clock::now();
-			int dura = (*it)->Duration;
 			int command = (*it)->Command;
-			int smp_period = 1000 / ((*it)->SampleRate);
+			int smp_period = 1000 / ((*it)->SampleRate); // in millisecond
 			smp_period = smp_period==0 ? 1 : smp_period; // max rate == 1000 Hz
 			int total_sample = (*it)->TotalSample;
 
@@ -145,23 +139,17 @@ public:
 			int sampleIdx = 0;
 			do 
 			{
-				/*if((*it)->Name == "Rest")
-					dtm->_mSerialPort->WriteData(&cmd[2],1);
-				else
-					dtm->_mSerialPort->WriteData(&cmd[0],1);*/
-
 				// data query
 				if(dtm->_armBand->IsConnected())
 				{
 					dtm->_armBandData.push_back(dtm->_armBand->GetDataVector());
 				}
 
-				boost::this_thread::sleep_for(boost::chrono::milliseconds(smp_period));
+				// windows delay, it is accurate
+				::Sleep(smp_period);
 
-				//t2 = steady_clock::now();
-				//time_span = duration_cast<duration<double> > (t2-t1);
 				sampleIdx+=1;
-			} while (sampleIdx<total_sample/*time_span.count()<dura*/);
+			} while (sampleIdx<total_sample);
 
 			progress+=1;
 			dtm->processingBarVal = 100*progress/total_num;
@@ -446,7 +434,7 @@ public slots:
 		if(qTimer->isActive())
 			qTimer->stop();
 		qTimer->start(200);
-		_mThread = boost::thread(boost::bind(&(Dlg_TrainModule::ThreadSend),this));
+		_mThread = boost::thread(boost::bind(&(Dlg_TrainModule::ThreadSampling),this));
 	}
 
 	void on_Btn_Delete_Latest_clicked()
