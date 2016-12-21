@@ -222,6 +222,19 @@
      <string>动作名称：</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="cbOpenHand">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>40</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>张开五指</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">

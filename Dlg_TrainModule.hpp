@@ -24,7 +24,7 @@ class Dlg_TrainModule : public QDialog, public Ui_TrainModule
 private:
 	// use int to store command
 	// 0: rest
-	// 1: thumb, 2: index, 4: middle, 8: ring, 16: little
+	// 1: thumb, 2: index, 4: middle, 8: ring, 16: little, 32: open hand
 	// 256: shangqie, 512: xiaqie
 	// 1024: neifan, 2048: waifan
 	// 4096: neixuan, 8192: waixuan
@@ -265,7 +265,7 @@ public slots:
 		}
 
 		// int command
-		// 1: thumb, 2: index, 4: middle, 8: ring, 16: little
+		// 1: thumb, 2: index, 4: middle, 8: ring, 16: little, 32: open hand
 		int command = 0;
 		if(cbThumb->isChecked())
 			command+=(1<<0);
@@ -277,6 +277,10 @@ public slots:
 			command+=(1<<3);
 		if(cbLittle->isChecked())
 			command+=(1<<4);
+
+		// if OpenHand is checked, others are hidden
+		if(cbOpenHand->isChecked())
+			command = (1<<5);
 
 		_addAction(name,command);
 
@@ -465,6 +469,10 @@ public slots:
 		if(qTimer->isActive())
 			qTimer->stop();
 		qTimer->start(200);
+
+		// clear last time buffer
+		_armBandData.clear();
+		// start sampling thread
 		_mThread = boost::thread(boost::bind(&(Dlg_TrainModule::ThreadSampling),this));
 	}
 

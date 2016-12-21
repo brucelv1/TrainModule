@@ -54,6 +54,7 @@ public:
     QLineEdit *LEFinger;
     QPushButton *Btn_Add_Finger;
     QLabel *label_4;
+    QCheckBox *cbOpenHand;
     QGroupBox *groupBox_2;
     QPushButton *Btn_Add_Wrist;
     QWidget *layoutWidget1;
@@ -184,6 +185,9 @@ public:
         label_4 = new QLabel(groupBox);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setGeometry(QRect(20, 70, 61, 16));
+        cbOpenHand = new QCheckBox(groupBox);
+        cbOpenHand->setObjectName(QString::fromUtf8("cbOpenHand"));
+        cbOpenHand->setGeometry(QRect(200, 40, 71, 16));
         groupBox_2 = new QGroupBox(TrainModule);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
         groupBox_2->setGeometry(QRect(20, 180, 281, 71));
@@ -350,6 +354,7 @@ public:
         cbLittle->setText(QApplication::translate("TrainModule", "\345\274\257\346\233\262\345\260\217\346\214\207", 0, QApplication::UnicodeUTF8));
         Btn_Add_Finger->setText(QApplication::translate("TrainModule", "\346\267\273\345\212\240", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("TrainModule", "\345\212\250\344\275\234\345\220\215\347\247\260\357\274\232", 0, QApplication::UnicodeUTF8));
+        cbOpenHand->setText(QApplication::translate("TrainModule", "\345\274\240\345\274\200\344\272\224\346\214\207", 0, QApplication::UnicodeUTF8));
         groupBox_2->setTitle(QApplication::translate("TrainModule", "\346\211\213\350\205\225\345\212\250\344\275\234", 0, QApplication::UnicodeUTF8));
         Btn_Add_Wrist->setText(QApplication::translate("TrainModule", "\346\267\273\345\212\240", 0, QApplication::UnicodeUTF8));
         rBtn_Shangqie->setText(QApplication::translate("TrainModule", "\344\270\212\345\210\207", 0, QApplication::UnicodeUTF8));
